@@ -7,7 +7,5 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class VerySimpleSnsApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(VerySimpleSnsApplication.class, args);
-	}
+		SpringApplication.run(VerySimpleSnsApplication.class, args);}}
 
-}
