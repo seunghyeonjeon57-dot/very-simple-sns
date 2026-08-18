@@ -19,6 +19,7 @@ import java.util.UUID;
 @EntityListeners(AuditingEntityListener.class)
 public class User {
     @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
     @Column(unique = true,nullable = false)
     private String userName;
@@ -35,6 +36,12 @@ public class User {
     @Column
     private Instant updatedAt;
 
+
+   public void update(String newEmail,String newNickName){
+      if(newEmail!=null) this.email=newEmail;
+
+      if(newNickName!=null) this.nickName=newNickName;
+   }
 
 
 
