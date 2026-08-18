@@ -21,13 +21,13 @@ public class User {
     @Id
     private UUID id;
     @Column(unique = true,nullable = false)
-    private String username;
+    private String userName;
     @Column(unique = true,nullable = false)
     private String email;
     @Column(nullable = false)
     private String password;
     @Column(unique = true,nullable = false)
-    private String nickname;
+    private String nickName;
     @CreatedDate
     @Column(updatable = false)
     private Instant createdAt;
