@@ -25,8 +25,8 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public User findUser(FindUserRequest request){
-        return userRepository.findByUsername(request.userName())
+    public User findUser(String userName){
+        return userRepository.findByUsername(userName)
                 .orElseThrow(()-> new IllegalArgumentException("User not found"));
     }
 
