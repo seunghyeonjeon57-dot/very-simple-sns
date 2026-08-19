@@ -5,6 +5,7 @@ import com.seunghyeon.verysimplesns.dto.request.SignUpRequest;
 import com.seunghyeon.verysimplesns.dto.request.UpdatedUserRequest;
 import com.seunghyeon.verysimplesns.exception.SimpleSnsException;
 import com.seunghyeon.verysimplesns.repository.UserRepository;
+import com.seunghyeon.verysimplesns.validate.BannedWordValidator;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -21,6 +22,9 @@ public class UserService {
     private final PasswordEncoder passwordEncoder;
 
     public User create(SignUpRequest request){
+        if(BannedWordValidator.isBanned(request.nickName())){
+            throw new SimpleSnsException("금칙어가 들어가있습니다." , HttpStatus.BAD_REQUEST);
+        }
         if(userRepository.existsByEmail(request.email())){
             throw new SimpleSnsException("중복된 이메일입니다", HttpStatus.CONFLICT);
         }
