@@ -27,7 +27,7 @@ public class UserController {
         User user = userService.create(request);
         UserResponse userResponse = UserResponse.from(user);
         URI location = URI.create("/users/" + user.getId());
-        return ResponseEntity.created(location).body(userResponse);//ok가 아닌 created를 써야할거같은데 created(url)에서 url을 뭘써야할지를 모르겟음.
+        return ResponseEntity.created(location).body(userResponse);
     }
 
     @GetMapping("/find")

@@ -11,4 +11,9 @@ public class GlobalExceptionHandler {
     public ResponseEntity<String> handleIllegalArgument(IllegalArgumentException e){
         return ResponseEntity.status(404).body(e.getMessage());
     }
+
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<String> handleRuntimeArgument(RuntimeException e){
+        return ResponseEntity.status(400).body(e.getLocalizedMessage());
+    }
 }

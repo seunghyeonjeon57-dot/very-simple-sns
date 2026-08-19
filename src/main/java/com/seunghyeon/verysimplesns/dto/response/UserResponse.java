@@ -8,7 +8,7 @@ import com.seunghyeon.verysimplesns.domain.User;
 import java.util.UUID;
 
 public record UserResponse(
-        UUID id,
+        UUID userId,
         String email,
         String nickName
 
