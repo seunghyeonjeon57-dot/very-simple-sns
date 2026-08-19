@@ -15,6 +15,5 @@ public record UserResponse(
 ) {
 
     public static UserResponse from(User user){
-        return new UserResponse(user.getId(),user.getEmail(), user.getNickName())
-;    }
+        return new UserResponse(user.getId(),user.getEmail(), user.getNickName());    }
 }
