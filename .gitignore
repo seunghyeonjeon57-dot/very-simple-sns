@@ -35,3 +35,6 @@ out/
 
 ### VS Code ###
 .vscode/
+ASSIGNMENT.md
+
+application-local.yml
