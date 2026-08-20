@@ -8,9 +8,11 @@ import com.seunghyeon.verysimplesns.repository.FeedRepository;
 import com.seunghyeon.verysimplesns.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.UUID;
 
@@ -32,6 +34,8 @@ public class FeedService {
         return feedRepository.save(feed);
     }
 
-    public List<Feed> find()
+    public List<Feed> find(UUID userId, Instant cursor, Pageable pageable){
+        return List.of();
+    }
 
 }
