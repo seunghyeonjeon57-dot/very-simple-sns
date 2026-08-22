@@ -6,11 +6,11 @@ import com.seunghyeon.verysimplesns.dto.request.UpdatedUserRequest;
 import com.seunghyeon.verysimplesns.exception.SimpleSnsException;
 import com.seunghyeon.verysimplesns.repository.UserRepository;
 import com.seunghyeon.verysimplesns.validate.BannedWordValidator;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.UUID;
 
@@ -43,6 +43,7 @@ public class UserService {
 
     }
 
+    @Transactional(readOnly = true)
     public User findUser(String userName){
         return userRepository.findByUsername(userName)
                 .orElseThrow(()-> new SimpleSnsException("유저를 찾을 수 없습니다.",HttpStatus.NOT_FOUND));
