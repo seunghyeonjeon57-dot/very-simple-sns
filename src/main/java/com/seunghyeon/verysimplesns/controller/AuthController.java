@@ -3,6 +3,7 @@ package com.seunghyeon.verysimplesns.controller;
 import com.seunghyeon.verysimplesns.dto.request.SignInRequest;
 import com.seunghyeon.verysimplesns.dto.response.LoginResponse;
 import com.seunghyeon.verysimplesns.service.AuthService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,7 +18,7 @@ public class AuthController {
     private final AuthService authService;
 
     @PostMapping
-    public ResponseEntity<LoginResponse> login(@RequestBody SignInRequest request){
+    public ResponseEntity<LoginResponse> login(@Valid @RequestBody SignInRequest request){
      String token=   authService.login(request);
      LoginResponse loginResponse =  new LoginResponse(token);
      return ResponseEntity.ok(loginResponse);

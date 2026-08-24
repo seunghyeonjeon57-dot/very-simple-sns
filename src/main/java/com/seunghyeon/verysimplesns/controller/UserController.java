@@ -6,8 +6,10 @@ import com.seunghyeon.verysimplesns.dto.request.UpdatedUserRequest;
 import com.seunghyeon.verysimplesns.dto.response.FindUserResponse;
 import com.seunghyeon.verysimplesns.dto.response.UserResponse;
 import com.seunghyeon.verysimplesns.service.UserService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -22,7 +24,7 @@ public class UserController {
 
     @PostMapping("/create")
     public ResponseEntity<UserResponse> create(
-            @RequestBody SignUpRequest request
+            @Valid  @RequestBody SignUpRequest request
             ){
         User user = userService.create(request);
         UserResponse userResponse = UserResponse.from(user);
@@ -40,11 +42,11 @@ public class UserController {
     }
 
 
-    @PatchMapping("/update/{userId}")
+    @PatchMapping("/update")
     public ResponseEntity<UserResponse> update(
-            @PathVariable
+            @AuthenticationPrincipal
             UUID userId,
-            @RequestBody
+            @Valid @RequestBody
             UpdatedUserRequest request
             ){
         User user = userService.updateUser(userId,request);
@@ -52,9 +54,10 @@ public class UserController {
         return ResponseEntity.status(200).body(userResponse);
     }
 
-    @DeleteMapping("/delete/{userId}")
+    @DeleteMapping("/delete")
     public ResponseEntity<Void> delete(
-            @PathVariable UUID userId
+            @AuthenticationPrincipal
+             UUID userId
     ){
         userService.deleteUser(userId);
         return ResponseEntity.noContent().build();

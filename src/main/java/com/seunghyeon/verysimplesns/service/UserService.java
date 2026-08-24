@@ -50,13 +50,23 @@ public class UserService {
     }
 
     public User updateUser(UUID userId, UpdatedUserRequest request){
-        User user  = userRepository.findById(userId)
-                .orElseThrow(()->new SimpleSnsException("유저를 찾을 수 없습니다.",HttpStatus.NOT_FOUND));
+        User user= findById(userId);
         user.update(request.email(),request.nickName());
         return userRepository.save(user);
     }
 
     public void deleteUser(UUID id){
+        findById(id);
         userRepository.deleteById(id);
     }
+
+
+
+    public User findById(UUID id){
+        User user  = userRepository.findById(id)
+                .orElseThrow(()->new SimpleSnsException("유저를 찾을 수 없습니다.",HttpStatus.NOT_FOUND));
+        return user;
+    }
 }
+
+
