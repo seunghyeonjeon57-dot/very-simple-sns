@@ -1,6 +1,7 @@
 package com.seunghyeon.verysimplesns.dto.response;
 
-public record ImageUploadResponse(
+public record ImageResponse(
+
         String imageUrl
 ) {
 }
