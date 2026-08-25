@@ -10,3 +10,9 @@ spring:
 
   profiles:
     active: local
+  servlet:
+    multipart:
+      max-file-size: 10MB
+
+file:
+  upload-dir: uploads
