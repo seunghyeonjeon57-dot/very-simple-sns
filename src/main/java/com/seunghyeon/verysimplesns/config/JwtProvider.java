@@ -19,10 +19,10 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class JwtProvider {
     @Value("${jwt.secret}")
-    private final String secret;
+    private  String secret;
 
     @Value("${jwt.expiration}")
-    private final long expiration;
+    private  long expiration;
 
     private SecretKey key;
 

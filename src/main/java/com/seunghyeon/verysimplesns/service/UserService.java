@@ -28,10 +28,10 @@ public class UserService {
         if(userRepository.existsByEmail(request.email())){
             throw new SimpleSnsException("중복된 이메일입니다", HttpStatus.CONFLICT);
         }
-        if(userRepository.existsByUsername(request.userName())){
+        if(userRepository.existsByUserName(request.userName())){
             throw new SimpleSnsException("중복된 아이디입니다.",HttpStatus.CONFLICT);
         }
-        if(userRepository.existsByNickname(request.nickName())){
+        if(userRepository.existsByNickName(request.nickName())){
             throw new SimpleSnsException("중복된 닉네임입니다.",HttpStatus.CONFLICT);
         }
         String encode = passwordEncoder.encode(request.password());
@@ -45,7 +45,7 @@ public class UserService {
 
     @Transactional(readOnly = true)
     public User findUser(String userName){
-        return userRepository.findByUsername(userName)
+        return userRepository.findByUserName(userName)
                 .orElseThrow(()-> new SimpleSnsException("유저를 찾을 수 없습니다.",HttpStatus.NOT_FOUND));
     }
 
