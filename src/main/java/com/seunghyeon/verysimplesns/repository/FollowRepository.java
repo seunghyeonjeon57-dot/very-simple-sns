@@ -12,6 +12,8 @@ public interface FollowRepository extends JpaRepository<Follow, UUID> {
     List<Follow> findByFollowerId(UUID followerId);
     List<Follow> findByFollowingId(UUID followingId);
     boolean existsByFollowerIdAndFollowingId(UUID followerId,UUID FollowingId);
+    void deleteByFollowerIdAndFollowingId(UUID followerId, UUID followingId);
+
 
 
 }
