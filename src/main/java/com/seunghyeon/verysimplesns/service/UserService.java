@@ -52,8 +52,8 @@ public class UserService {
     public User updateUser(UUID userId, UpdatedUserRequest request){
         User user= findById(userId);
         user.update(request.email(),request.nickName());
-        return userRepository.save(user);
-    }
+        return user;
+            }
 
     public void deleteUser(UUID id){
         findById(id);
