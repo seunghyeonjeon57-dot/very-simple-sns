@@ -40,7 +40,7 @@ public class FeedController {
     @GetMapping("/find")
     public ResponseEntity<List<FeedResponse>> find(
             @AuthenticationPrincipal UUID userId,
-            @RequestParam Instant cursor,
+            @RequestParam (required = false) Instant cursor,
              Pageable pageable
     ){
        List<Feed> feeds = feedService.find(userId, cursor,pageable);
