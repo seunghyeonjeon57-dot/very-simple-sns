@@ -6,10 +6,12 @@ import com.seunghyeon.verysimplesns.exception.SimpleSnsException;
 import com.seunghyeon.verysimplesns.repository.FollowRepository;
 import com.seunghyeon.verysimplesns.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.UUID;
 
@@ -38,13 +40,21 @@ public class FollowService {
     }
 
     @Transactional(readOnly = true)
-    public List<Follow> getFollow(UUID userId){
-        return repository.findByFollowerId(userId);
+    public List<Follow> getFollow(UUID userId, Instant cursor, Pageable pageable
+    ){
+        if(cursor == null){
+            cursor = Instant.now();
+        }
+
+        return repository.findByFollowingId(userId,cursor,pageable);
     }
 
     @Transactional(readOnly = true)
-    public List<Follow> getFollowing(UUID userId){
-        return repository.findByFollowingId(userId);
+    public List<Follow> getFollowing(UUID userId,Instant cursor,Pageable pageable){
+        if(cursor ==null){
+            cursor = Instant.now();
+        }
+        return repository.findByFollowerId(userId,cursor,pageable);
     }
 
 
