@@ -40,7 +40,7 @@ public class FollowService {
     }
 
     @Transactional(readOnly = true)
-    public List<Follow> getFollow(UUID userId, Instant cursor, Pageable pageable
+    public List<Follow> getFollowers(UUID userId, Instant cursor, Pageable pageable
     ){
         if(cursor == null){
             cursor = Instant.now();
@@ -50,7 +50,7 @@ public class FollowService {
     }
 
     @Transactional(readOnly = true)
-    public List<Follow> getFollowing(UUID userId,Instant cursor,Pageable pageable){
+    public List<Follow> getFollowings(UUID userId,Instant cursor,Pageable pageable){
         if(cursor ==null){
             cursor = Instant.now();
         }

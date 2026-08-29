@@ -7,6 +7,7 @@ import java.util.UUID;
 public record FollowResponse(
         UUID followerId,
         UUID followingId
+
 ) {
 
     public static FollowResponse from(Follow follow){
