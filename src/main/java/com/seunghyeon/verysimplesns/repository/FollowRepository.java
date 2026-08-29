@@ -22,6 +22,13 @@ public interface FollowRepository extends JpaRepository<Follow, UUID> {
     boolean existsByFollowerIdAndFollowingId(UUID followerId,UUID FollowingId);
     void deleteByFollowerIdAndFollowingId(UUID followerId, UUID followingId);
 
+    @Query("SELECT f.following.id FROM Follow f WHERE f.follower.id  = :userId AND f.following.id IN (:ids)")
+    List<UUID> findMutualForFollowerList(@Param("userId") UUID userId, @Param("ids") List<UUID> ids);
+
+    @Query("SELECT f.follower.id FROM Follow f WHERE f.following.id = :userId AND f.follower.id IN (:ids)")
+    List<UUID> findMutualForFollowingList(@Param("userId") UUID userId , @Param("ids") List<UUID> ids);
+
+
 
 
 }
